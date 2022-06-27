@@ -18,7 +18,7 @@ function getKeyString(x, y) {
     // Cuando la app arranque, vamos a escuchar los cambios de auth y vamos a disparar/generar un 
     //cambio en auth ingresando de manera anónima y entonces eso debe disparar la parte del if.
     firebase.auth().onAuthStateChanged((user) => {
-        console.log(user);
+        console.log(user)
         if (user) {
             //You're logged in!
         } else {
