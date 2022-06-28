@@ -1,5 +1,7 @@
 document.write('Hola mundo');
 
+const playerColors = ["blue","red","orange","yellow", "green","purple"];
+
 //Misc Helpers
 
 //Recibe cualquier arreglo y regresa un elemento aleatorio de ese arreglo
@@ -71,7 +73,7 @@ function getKeyString(x, y) {
             playerRef.set({
                 id: playerId,
                 name,
-                color: "blue",
+                color: randomFromArray(playerColors),
                 x: 3,
                 y: 3,
                 coins: 0,
