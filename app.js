@@ -33,6 +33,39 @@ function getKeyString(x, y) {
             // Todo esto sucede al interactuar con un "ref"
             // Esta línea crea el padre de los jugadores por nosotros y luego creará un nodo para nuestro player id.
             playerRef = firebase.database().ref(`players/${playerId}`);
+            
+            
+
+            // La siguiente función permite asignar un nombre aleatorio a cada usuario que se conecta.
+            function createName() {
+                const gato = randomFromArray([
+                    "BENITO",
+                    "PANZA",
+                    "DEMÓSTENES",
+                    "CUCHO",
+                    "ESPANTO",
+                    "DON-GATO",
+                    "GARFIELD",
+                    "SILVESTRE",
+                    "TOM",
+                    "CHESHIRE-CAT",
+                    "GATO-CON-BOTAS",
+                    "CALVIN",
+                    "MICIFUZ",
+                    "HELLO-KITTY",
+                    "O-MALLEY",
+                    "MARIE",
+                    "BERLIOZ",
+                    "DUCHESS",
+                    "TOULOUSE",
+                    "LUCIFER",
+                    "FELIX"
+                ]);
+                return `${gato}`;
+            }
+
+            const name = createName();
+            
             // Dentro del siguiente método se puede pasar un objeto o un valor, o un string.
             // En este caso, creamos un objeto
             playerRef.set({
