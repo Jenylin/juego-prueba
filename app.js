@@ -44,6 +44,8 @@ function getKeyString(x, y) {
                 coins: 0,
             })
             
+            // La siguiente línea es para remover al usuario de Firebase cuando abandona la página
+            playerRef.onDisconnect().remove();
 
         } else {
             //You're logged out
