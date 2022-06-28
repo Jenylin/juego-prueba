@@ -70,7 +70,7 @@ function getKeyString(x, y) {
             // En este caso, creamos un objeto
             playerRef.set({
                 id: playerId,
-                name: "BENITO",
+                name,
                 color: "blue",
                 x: 3,
                 y: 3,
