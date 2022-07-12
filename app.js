@@ -19,6 +19,13 @@ function getKeyString(x, y) {
 
     let playerId;
     let playerRef;
+    // Necesitamos mantener una referencia a estos elementos para poder actualizarlos después en el callback allPlayersRef.on("value", (snapshot) => {})
+    // cuando algo cambie, por ejemplo: cuando un personaje diferente se mueva a través del mapa, necesitaremos actualizar ese div para ese personaje.
+    // Así que crearemos el objeto playerElements.
+    let playerElements = {};
+
+    // La siguiente es una referencia a nuestro elemento del DOM:
+    const gameContainer = document.querySelector(".contenedor-del-juego");
 
     function initGame() {
         // La siguiente es una referencia a todos los jugadores del juego, en oposición a playerRef, ya que esta última es una referencia sólo nuestra
@@ -62,6 +69,22 @@ function getKeyString(x, y) {
                 </div>
                 <div class = "Character_you-arrow"></div>
             `);
+
+            // Aquí poblaremos el objeto playerElements.
+            playerElements(addedPlayer.id) = characterElement;
+
+            // Llenaremos un estado inicial. (Cuál es el nombre, el contador de monedas.)
+            // Estamos usando un querySelector para seleccionar del div de arriba el nombre y las monedas.
+            characterElement.querySelector(".Character_name").innerText = addedPlayer.name;
+            characterElement.querySelector(".Character_coins").innerText = addedPlayer.coins;
+            // Las siguientes dos líneas son para dar estilo:
+            characterElement.setAttribute("data-color", addedPlayer.color);
+            //characterElement.setAttribute("data-direction", addedPlayer.direction);
+            // Las siguientes tres líneas son para posicionar a nuestro personaje:
+            const left = 16 * addedPlayer.x + "px"; // El tamaño de la cuadrícula por la posición donde está el personaje.
+            const top = 16 * addedPlayer.y - 4 + "px";
+            characterElement.style.transform = `translate3d(${left},${top},0)`;
+            gameContainer.appendChild(characterElement);
 
 
         })
