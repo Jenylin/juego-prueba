@@ -1,5 +1,5 @@
 const playerColors = [
-    "CUCHO", "PANZA","DON-GATO", "DEMOSTENES","ESPANTO","BENITO","GARFIELD", "SILVESTRE", "TOM", "CHESHIRE-CAT", "HOBBES","MICIFUZ", "HELLO-KITTY",
+    "CUCHO", "PANZA","DON-GATO", "DEMOSTENES","ESPANTO","BENITO","GARFIELD", "SILVESTRE", "TOM","HOBBES","MICIFUZ", "HELLO-KITTY",
      "MARIE","TOULOUSE","BERLIOZ", "O-MALLEY","DUCHESS","LUCIFER","FELIX"
 ];
 
@@ -121,7 +121,6 @@ function getKeyString(x, y) {
                     "GARFIELD",
                     "SILVESTRE",
                     "TOM",
-                    "CHESHIRE-CAT",
                     "HOBBES",
                     "MICIFUZ",
                     "HELLO-KITTY",
