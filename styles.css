@@ -76,8 +76,8 @@ button:active {
 /* Characters */
 .grid-cell {
     position: absolute;
-    width: 16px;
-    height: 16px;
+    width: 100px;
+    height: 100px;
 }
 
 .Character {
