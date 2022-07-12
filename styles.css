@@ -119,9 +119,206 @@ button:active {
 }
 
 .Character[data-direction="left"][data-color = "CUCHO"] .Character_sprite {
-    background-position-x: -5px;
-    background-position-y: -3px;
+    background-position-x: 0px;
+    background-position-y: 0px;
 }
+
+.Character[data-direction="right"][data-color = "PANZA"] .Character_sprite {
+    background-position-x: -98.4px;
+    background-position-y: 0px;
+}
+
+.Character[data-direction="left"][data-color = "PANZA"] .Character_sprite {
+    background-position-x: -65.6px;
+    background-position-y: 0px;
+}
+
+.Character[data-direction="right"][data-color = "DON-GATO"] .Character_sprite {
+    background-position-x: -164px;
+    background-position-y: 0px;
+}
+
+.Character[data-direction="left"][data-color = "DON-GATO"] .Character_sprite {
+    background-position-x: -131.2px;
+    background-position-y: 0px;
+}
+.Character[data-direction="right"][data-color = "DEMOSTENES"] .Character_sprite {
+    background-position-x: -229.6px;
+    background-position-y: 0px;
+}
+
+.Character[data-direction="left"][data-color = "DEMOSTENES"] .Character_sprite {
+    background-position-x: -196.8px;
+    background-position-y: 0px;
+}
+.Character[data-direction="right"][data-color = "ESPANTO"] .Character_sprite {
+    background-position-x: -295.2px;
+    background-position-y: 0px;
+}
+
+.Character[data-direction="left"][data-color = "ESPANTO"] .Character_sprite {
+    background-position-x: -262.4px;
+    background-position-y: 0px;
+}
+
+
+
+
+
+.Character[data-direction="right"][data-color = "BENITO"] .Character_sprite {
+    background-position-x: -32.8px;
+    background-position-y: -26.75px;
+}
+
+.Character[data-direction="left"][data-color = "BENITO"] .Character_sprite {
+    background-position-x: 0px;
+    background-position-y: -26.75px;
+}
+
+.Character[data-direction="right"][data-color = "GARFIELD"] .Character_sprite {
+    background-position-x: -98.4px;
+    background-position-y: -26.75px;
+}
+
+.Character[data-direction="left"][data-color = "GARFIELD"] .Character_sprite {
+    background-position-x: -65.6px;
+    background-position-y: -26.75px;
+}
+
+.Character[data-direction="right"][data-color = "SILVESTRE"] .Character_sprite {
+    background-position-x: -164px;
+    background-position-y: -26.75px;
+}
+
+.Character[data-direction="left"][data-color = "SILVESTRE"] .Character_sprite {
+    background-position-x: -131.2px;
+    background-position-y: -26.75px;
+}
+.Character[data-direction="right"][data-color = "TOM"] .Character_sprite {
+    background-position-x: -229.6px;
+    background-position-y: -26.75px;
+}
+
+.Character[data-direction="left"][data-color = "TOM"] .Character_sprite {
+    background-position-x: -196.8px;
+    background-position-y: -26.75px;
+}
+.Character[data-direction="right"][data-color = "CHESHIRE-CAT"] .Character_sprite {
+    background-position-x: -295.2px;
+    background-position-y: -26.75px;
+}
+
+.Character[data-direction="left"][data-color = "CHESHIRE-CAT"] .Character_sprite {
+    background-position-x: -262.4px;
+    background-position-y: -26.75px;
+}
+
+
+
+
+
+
+.Character[data-direction="right"][data-color = "HOBBES"] .Character_sprite {
+    background-position-x: -32.8px;
+    background-position-y: -53.5px;
+}
+
+.Character[data-direction="left"][data-color = "HOBBES"] .Character_sprite {
+    background-position-x: 0px;
+    background-position-y: -53.5px;
+}
+
+.Character[data-direction="right"][data-color = "MICIFUZ"] .Character_sprite {
+    background-position-x: -98.4px;
+    background-position-y: -53.5px;
+}
+
+.Character[data-direction="left"][data-color = "MICIFUZ"] .Character_sprite {
+    background-position-x: -65.6px;
+    background-position-y: -53.5px;
+}
+
+.Character[data-direction="right"][data-color = "HELLO-KITTY"] .Character_sprite {
+    background-position-x: -164px;
+    background-position-y: -53.5px;
+}
+
+.Character[data-direction="left"][data-color = "HELLO-KITTY"] .Character_sprite {
+    background-position-x: -131.2px;
+    background-position-y: -53.5px;
+}
+.Character[data-direction="right"][data-color = "MARIE"] .Character_sprite {
+    background-position-x: -229.6px;
+    background-position-y: -53.5px;
+}
+
+.Character[data-direction="left"][data-color = "MARIE"] .Character_sprite {
+    background-position-x: -196.8px;
+    background-position-y: -53.5px;
+}
+.Character[data-direction="right"][data-color = "TOULOUSE"] .Character_sprite {
+    background-position-x: -295.2px;
+    background-position-y: -53.5px;
+}
+
+.Character[data-direction="left"][data-color = "TOULOUSE"] .Character_sprite {
+    background-position-x: -262.4px;
+    background-position-y: -53.5px;
+}
+
+
+
+
+.Character[data-direction="right"][data-color = "BERLIOZ"] .Character_sprite {
+    background-position-x: -32.8px;
+    background-position-y: -80.25px;
+}
+
+.Character[data-direction="left"][data-color = "BERLIOZ"] .Character_sprite {
+    background-position-x: 0px;
+    background-position-y: -80.25px;
+}
+
+.Character[data-direction="right"][data-color = "O-MALLEY"] .Character_sprite {
+    background-position-x: -98.4px;
+    background-position-y: -80.25px;
+}
+
+.Character[data-direction="left"][data-color = "O-MALLEY"] .Character_sprite {
+    background-position-x: -65.6px;
+    background-position-y: -80.25px;
+}
+
+.Character[data-direction="right"][data-color = "DUCHESS"] .Character_sprite {
+    background-position-x: -164px;
+    background-position-y: -80.25px;
+}
+
+.Character[data-direction="left"][data-color = "DUCHESS"] .Character_sprite {
+    background-position-x: -131.2px;
+    background-position-y: -80.25px;
+}
+.Character[data-direction="right"][data-color = "LUCIFER"] .Character_sprite {
+    background-position-x: -229.6px;
+    background-position-y: -80.25px;
+}
+
+.Character[data-direction="left"][data-color = "LUCIFER"] .Character_sprite {
+    background-position-x: -196.8px;
+    background-position-y: -80.25px;
+}
+.Character[data-direction="right"][data-color = "FELIX"] .Character_sprite {
+    background-position-x: -295.2px;
+    background-position-y: -80.25px;
+}
+
+.Character[data-direction="left"][data-color = "FELIX"] .Character_sprite {
+    background-position-x: -262.4px;
+    background-position-y: -80.25px;
+}
+
+
+
 
 
 .Character_name-container {

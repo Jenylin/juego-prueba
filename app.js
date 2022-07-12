@@ -1,5 +1,6 @@
 const playerColors = [
-    "CUCHO"
+    "CUCHO", "PANZA","DON-GATO", "DEMOSTENES","ESPANTO","BENITO","GARFIELD", "SILVESTRE", "TOM", "CHESHIRE-CAT", "HOBBES","MICIFUZ", "HELLO-KITTY",
+     "MARIE","TOULOUSE","BERLIOZ", "O-MALLEY","DUCHESS","LUCIFER","FELIX"
 ];
 
 //Misc Helpers
@@ -113,7 +114,7 @@ function getKeyString(x, y) {
                 const gato = randomFromArray([
                     "BENITO",
                     "PANZA",
-                    "DEMÓSTENES",
+                    "DEMOSTENES",
                     "CUCHO",
                     "ESPANTO",
                     "DON-GATO",
@@ -121,8 +122,7 @@ function getKeyString(x, y) {
                     "SILVESTRE",
                     "TOM",
                     "CHESHIRE-CAT",
-                    "GATO-CON-BOTAS",
-                    "CALVIN",
+                    "HOBBES",
                     "MICIFUZ",
                     "HELLO-KITTY",
                     "O-MALLEY",
