@@ -96,7 +96,7 @@ button:active {
     display: block;
 }
 
-.Character_you_arrow {
+.Character_you-arrow {
     display: none;
     position: absolute;
     top: -18px;
