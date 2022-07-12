@@ -107,6 +107,23 @@ button:active {
     object-fit: contain;
 }
 
+.Character_sprite {
+    overflow: hidden;
+    top: -3px;
+    background: url(sps.png);
+  }
+
+.Character[data-direction="right"][data-color = "CUCHO"] .Character_sprite {
+    background-position-x: 109px;
+    background-position-y: -89px;
+}
+
+.Character[data-direction="left"][data-color = "CUCHO"] .Character_sprite {
+    background-position-x: 218px;
+    background-position-y: -178px;
+}
+
+
 .Character_name-container {
     position: absolute;
     top: -12px;

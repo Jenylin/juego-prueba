@@ -1,4 +1,6 @@
-const playerColors = ["blue","red","orange","yellow", "green","purple"];
+const playerColors = [
+    "CUCHO"
+];
 
 //Misc Helpers
 
@@ -77,7 +79,7 @@ function getKeyString(x, y) {
             characterElement.querySelector(".Character_coins").innerText = addedPlayer.coins;
             // Las siguientes dos líneas son para dar estilo:
             characterElement.setAttribute("data-color", addedPlayer.color);
-            //characterElement.setAttribute("data-direction", addedPlayer.direction);
+            characterElement.setAttribute("data-direction", addedPlayer.direction);
             // Las siguientes tres líneas son para posicionar a nuestro personaje:
             const left = 16 * addedPlayer.x + "px"; // El tamaño de la cuadrícula por la posición donde está el personaje.
             const top = 16 * addedPlayer.y - 4 + "px";
@@ -140,7 +142,8 @@ function getKeyString(x, y) {
             // En este caso, creamos un objeto
             playerRef.set({
                 id: playerId,
-                name,
+                name = "CUCHO",
+                direction: "right",
                 color: randomFromArray(playerColors),
                 x: 3,
                 y: 3,
