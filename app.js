@@ -66,8 +66,8 @@ function getKeyString(x, y) {
                 <div class = "Character_name-container">
                     <span class = "Character_name"></span>
                     <span class = "Character_coins">0</span>
-                    <div class = "Character_you-arrow"></div>
                 </div>
+                <div class = "Character_you-arrow"></div>
             `);
 
             // Aquí poblaremos el objeto playerElements.
