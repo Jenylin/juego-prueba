@@ -142,7 +142,7 @@ function getKeyString(x, y) {
             // En este caso, creamos un objeto
             playerRef.set({
                 id: playerId,
-                name = "CUCHO",
+                name: "CUCHO",
                 direction: "right",
                 color: randomFromArray(playerColors),
                 x: 3,
