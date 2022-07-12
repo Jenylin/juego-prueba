@@ -1,8 +1,30 @@
 * {
     color:white;
+    box-sizing: border-box;
 }
 
 html, body {
     background-color: black;
     color: blanchedalmond;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenedor-del-juego {
+    position: relative;
+    width: 248px;
+    height: 288px;
+    background-color: lightseagreen;
+}
+
+.player-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1em;
+    display: flex;
+    gap: 0.5cm;
+    align-items: flex-end;
 }
