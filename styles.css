@@ -110,11 +110,11 @@ button:active {
 .Character_sprite {
     overflow: hidden;
     top: -3px;
-    background: url(sps3.png);
+    background: url(sps2.png);
   }
 
 .Character[data-direction="right"][data-color = "CUCHO"] .Character_sprite {
-    background-position-x: -25px;
+    background-position-x: -32.8px;
     background-position-y: 0px;
 }
 
