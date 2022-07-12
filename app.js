@@ -1,5 +1,3 @@
-document.write('Hola mundo');
-
 const playerColors = ["blue","red","orange","yellow", "green","purple"];
 
 //Misc Helpers
