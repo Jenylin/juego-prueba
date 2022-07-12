@@ -61,11 +61,11 @@ function getKeyString(x, y) {
             characterElement.innerHTML = (`
                 <div class = "Character_shadow grid-cell"></div>
                 <div class = "Character_sprite grid-cell"></div>
+                <div class = "Character_you-arrow"></div>
                 <div class = "Character_name-container">
                     <span class = "Character_name"></span>
                     <span class = "Character_coins">0</span>
                 </div>
-                <div class = "Character_you-arrow"></div>
             `);
 
             // Aquí poblaremos el objeto playerElements.
