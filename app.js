@@ -69,7 +69,7 @@ function getKeyString(x, y) {
             `);
 
             // Aquí poblaremos el objeto playerElements.
-            playerElements(addedPlayer.id) = characterElement;
+            playerElements[addedPlayer.id] = characterElement;
 
             // Llenaremos un estado inicial. (Cuál es el nombre, el contador de monedas.)
             // Estamos usando un querySelector para seleccionar del div de arriba el nombre y las monedas.
