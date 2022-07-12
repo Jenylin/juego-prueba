@@ -92,7 +92,7 @@ button:active {
 }
 
 /* Lo siguiente muestra una flecha sobre tu cabeza. */
-.Character.you.Character_you-arrow {
+.Character.you .Character_you-arrow {
     display: block;
 }
 
