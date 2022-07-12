@@ -76,8 +76,8 @@ button:active {
 /* Characters */
 .grid-cell {
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 25px;
+    height: 20.5px;
 }
 
 .Character {
@@ -110,17 +110,17 @@ button:active {
 .Character_sprite {
     overflow: hidden;
     top: -3px;
-    background: url(sps.png);
+    background: url(sps3.png);
   }
 
 .Character[data-direction="right"][data-color = "CUCHO"] .Character_sprite {
-    background-position-x: -109px;
-    background-position-y: -89px;
+    background-position-x: -25px;
+    background-position-y: -5px;
 }
 
 .Character[data-direction="left"][data-color = "CUCHO"] .Character_sprite {
-    background-position-x: -218px;
-    background-position-y: -178px;
+    background-position-x: -5px;
+    background-position-y: -3px;
 }
 
 
