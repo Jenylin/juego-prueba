@@ -1,9 +1,12 @@
 * {
-    color:white;
+    color: white;
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
+    margin: 0;
+    padding: 0;
     background-color: black;
     color: blanchedalmond;
     height: 100%;
@@ -15,7 +18,7 @@ html, body {
 .contenedor-del-juego {
     position: relative;
     width: 248px;
-    height: 288px;
+    height: 208px;
     background-color: lightseagreen;
 }
 
@@ -29,6 +32,46 @@ html, body {
     align-items: flex-end;
 }
 
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input[type="text"],
+button {
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 18px;
+    height: 44px;
+    border-radius: 4px;
+    outline: 0;
+}
+
+input[type="text"] {
+    outline: 0;
+    padding-left: 0.5em;
+    border: 3px solid #222034;
+    width: 150px;
+    text-transform: uppercase;
+}
+
+input[type="text"]:focus {
+    border-color: #f000ff;
+}
+
+button {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    background: #59ff5a;
+    border: 0;
+    border-bottom: 2px solid #1e830b;
+    cursor: pointer;
+}
+
+button:active {
+    position: relative;
+    top: 1px;
+}
 
 /* Characters */
 .grid-cell {
@@ -36,17 +79,23 @@ html, body {
     width: 16px;
     height: 16px;
 }
+
 .Character {
-    transition: transform 0.4s; /* CSS transitions allows you to change property values smoothly, over a given duration.*/
+    transition: transform 0.4s;
+    /* CSS transitions allows you to change property values smoothly, over a given duration.*/
     /* Cuando el personaje se mueva, animaremos ese nuevo valor con una transición. */
 }
+
 .Character.you {
-    z-index: 1; /* Hace que tu capa esté sobre todo lo demás (para que no pase alguien más sobre ti, por ejemplo).*/
+    z-index: 1;
+    /* Hace que tu capa esté sobre todo lo demás (para que no pase alguien más sobre ti, por ejemplo).*/
 }
+
 /* Lo siguiente muestra una flecha sobre tu cabeza. */
 .Character.you.Character_you-arrow {
     display: block;
 }
+
 .Character_you_arrow {
     display: none;
     position: absolute;
@@ -70,6 +119,7 @@ html, body {
     text-transform: uppercase;
     white-space: nowrap;
 }
+
 .Character_coins {
     margin-left: 1px;
     color: gold;
