@@ -115,7 +115,7 @@ button:active {
 
 .Character[data-direction="right"][data-color = "CUCHO"] .Character_sprite {
     background-position-x: -25px;
-    background-position-y: -5px;
+    background-position-y: 0px;
 }
 
 .Character[data-direction="left"][data-color = "CUCHO"] .Character_sprite {
