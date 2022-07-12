@@ -144,7 +144,7 @@ function getKeyString(x, y) {
                 id: playerId,
                 name,
                 direction: "right",
-                color: randomFromArray(playerColors),
+                color: name,
                 x: 3,
                 y: 3,
                 coins: 0,
