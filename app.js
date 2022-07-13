@@ -364,7 +364,7 @@ function getRandomSafeSpot() {
         allHtmlCoinsRef.on("child_added", (snapshot) => {
             const coinHtml = snapshot.val();
             const key = getKeyString(coinHtml.x, coinHtml.y);
-            HtmlCoins[key] = true;
+            htmlCoins[key] = true;
 
 
             // Create the DOM Element
@@ -395,11 +395,10 @@ function getRandomSafeSpot() {
 
 
         // MONEDAS MINA
-        // MONEDAS HTML
         allMinaCoinsRef.on("child_added", (snapshot) => {
             const coinMina = snapshot.val();
             const key = getKeyString(coinMina.x, coinMina.y);
-            MinaCoins[key] = true;
+            minaCoins[key] = true;
 
 
             // Create the DOM Element
