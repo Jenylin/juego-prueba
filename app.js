@@ -43,19 +43,6 @@ function getRandomSafeSpot() {
     ]);
 }
 
-function placeJSCoin() {
-    const { x, y } = getRandomSafeSpot();
-    const coinJSRef = firebase.database().ref(`jsCoins/${getKeyString(x, y)}`);
-    coinJSRef.set({
-        x,
-        y,
-    })
-
-    const coinJSTimeouts = [2000, 3000, 4000, 5000];
-    setTimeout(() => {
-        placeJSCoin();
-    }, randomFromArray(coinJSTimeouts))
-}
 
 (function () {
 
@@ -77,6 +64,34 @@ function placeJSCoin() {
     // La siguiente es una referencia a nuestro elemento del DOM:
     const gameContainer = document.querySelector(".contenedor-del-juego");
 
+    function placeJSCoin() {
+        const { x, y } = getRandomSafeSpot();
+        const coinJSRef = firebase.database().ref(`jsCoins/${getKeyString(x, y)}`);
+        coinJSRef.set({
+            x,
+            y,
+        })
+
+        const coinJSTimeouts = [2000, 3000, 4000, 5000];
+        setTimeout(() => {
+            placeJSCoin();
+        }, randomFromArray(coinJSTimeouts))
+    }
+
+
+    function attemptGrabJSCoin(x, y) {
+        const key = getKeyString(x, y);
+        if (jsCoins[key]) {
+            // Remove this key from data, then uptick Player's coin count
+            firebase.database().ref(`jsCoins/${key}`).remove();
+            playerRef.update({
+                coins: players[playerId].coins + 1,
+            })
+        }
+    }
+
+
+
     function handleArrowPress(xChange = 0, yChange = 0) {
         const newX = players[playerId].x + xChange;
         const newY = players[playerId].y + yChange;
@@ -89,6 +104,7 @@ function placeJSCoin() {
             players[playerId].direction = "left";
         }
         playerRef.set(players[playerId]);
+        attemptGrabJSCoin(newX, newY);
     }
 
     function initGame() {
@@ -208,11 +224,11 @@ function placeJSCoin() {
         })
 
         allJSCoinsRef.on("child_removed", (snapshot) => {
-            const {x,y} = snapshot.val();
-            const keyToRemove = getKeyString(x,y);
-            gameContainer.removeChild( coinJSElements[keyToRemove] );
+            const { x, y } = snapshot.val();
+            const keyToRemove = getKeyString(x, y);
+            gameContainer.removeChild(coinJSElements[keyToRemove]);
             delete coinJSElements[keyToRemove];
-          })
+        })
 
         // Colocar la primera moneda JS
         placeJSCoin();
