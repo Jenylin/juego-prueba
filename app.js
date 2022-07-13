@@ -64,10 +64,10 @@ function getKeyString(x, y) {
             Object.keys(players).forEach((key) => {
                 const characterState = players[key]; // characterState es un objeto que tiene nuestro nombre, dirección, etc.
                 let el = playerElements[key]; // Veremos nuestra referencia al elemento del dom en pantalla.
-                el.querySelector(".Character_name").innerText = addedPlayer.name;
-                el.querySelector(".Character_coins").innerText = addedPlayer.coins;
-                el.setAttribute("data-color", addedPlayer.color);
-                el.setAttribute("data-direction", addedPlayer.direction);
+                el.querySelector(".Character_name").innerText = characterState.name;
+                el.querySelector(".Character_coins").innerText = characterState.coins;
+                el.setAttribute("data-color", characterState.color);
+                el.setAttribute("data-direction", characterState.direction);
                 const left = 16 * characterState.x + "px";
                 const top = 16 * characterState.y - 4 + "px";
                 el.style.transform = `translate3d(${left}, ${top}, 0)`
