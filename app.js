@@ -60,10 +60,14 @@ function getRandomSafeSpot() {
     let coinJavaElements = {};
     let htmlCoins = {};
     let coinHtmlElements = {};
+    let minaCoins = {};
+    let coinMinaElements = {};
 
     // La siguiente es una referencia a nuestro elemento del DOM:
     const gameContainer = document.querySelector(".contenedor-del-juego");
 
+
+    // Monedas JS
     function placeJSCoin() {
         const { x, y } = getRandomSafeSpot();
         const coinJSRef = firebase.database().ref(`jsCoins/${getKeyString(x, y)}`);
@@ -90,6 +94,90 @@ function getRandomSafeSpot() {
         }
     }
 
+    // Monedas Java
+    function placeJavaCoin() {
+        const { x, y } = getRandomSafeSpot();
+        const coinJavaRef = firebase.database().ref(`javaCoins/${getKeyString(x, y)}`);
+        coinJavaRef.set({
+            x,
+            y,
+        })
+
+        const coinJavaTimeouts = [2000, 3000, 4000, 5000];
+        setTimeout(() => {
+            placeJavaCoin();
+        }, randomFromArray(coinJavaTimeouts))
+    }
+
+
+    function attemptGrabJavaCoin(x, y) {
+        const key = getKeyString(x, y);
+        if (javaCoins[key]) {
+            // Remove this key from data, then uptick Player's coin count
+            firebase.database().ref(`javaCoins/${key}`).remove();
+            playerRef.update({
+                coins: players[playerId].coins + 1,
+            })
+        }
+    }
+
+
+    // Monedas HTML
+    function placeHtmlCoin() {
+        const { x, y } = getRandomSafeSpot();
+        const coinHtmlRef = firebase.database().ref(`htmlCoins/${getKeyString(x, y)}`);
+        coinHtmlRef.set({
+            x,
+            y,
+        })
+
+        const coinHtmlTimeouts = [2000, 3000, 4000, 5000];
+        setTimeout(() => {
+            placeHtmlCoin();
+        }, randomFromArray(coinHtmlTimeouts))
+    }
+
+
+    function attemptGrabHtmlCoin(x, y) {
+        const key = getKeyString(x, y);
+        if (htmlCoins[key]) {
+            // Remove this key from data, then uptick Player's coin count
+            firebase.database().ref(`htmlCoins/${key}`).remove();
+            playerRef.update({
+                coins: players[playerId].coins + 1,
+            })
+        }
+    }
+
+
+
+    // Monedas mina
+    function placeMinaCoin() {
+        const { x, y } = getRandomSafeSpot();
+        const coinMinaRef = firebase.database().ref(`minaCoins/${getKeyString(x, y)}`);
+        coinMinaRef.set({
+            x,
+            y,
+        })
+
+        const coinMinaTimeouts = [2000, 3000, 4000, 5000];
+        setTimeout(() => {
+            placeMinaCoin();
+        }, randomFromArray(coinMinaTimeouts))
+    }
+
+
+    function attemptGrabMinaCoin(x, y) {
+        const key = getKeyString(x, y);
+        if (minaCoins[key]) {
+            // Remove this key from data, then uptick Player's coin count
+            firebase.database().ref(`minaCoins/${key}`).remove();
+            playerRef.update({
+                coins: players[playerId].coins - 1,
+            })
+        }
+    }
+
 
 
     function handleArrowPress(xChange = 0, yChange = 0) {
@@ -105,6 +193,9 @@ function getRandomSafeSpot() {
         }
         playerRef.set(players[playerId]);
         attemptGrabJSCoin(newX, newY);
+        attemptGrabJavaCoin(newX, newY);
+        attemptGrabHtmlCoin(newX, newY);
+        attemptGrabMinaCoin(newX, newY);
     }
 
     function initGame() {
@@ -119,6 +210,9 @@ function getRandomSafeSpot() {
         const allPlayersRef = firebase.database().ref(`players`);
         // La referencia de abajo nos permite leer todas las monedas que están en el mundo del juego.
         const allJSCoinsRef = firebase.database().ref(`jsCoins`);
+        const allJavaCoinsRef = firebase.database().ref(`javaCoins`);
+        const allHtmlCoinsRef = firebase.database().ref(`htmlCoins`);
+        const allMinaCoinsRef = firebase.database().ref(`minaCoins`);
 
         // El método de abajo es un "listener" que establece un callback para ejecutarse cuando el valor de este ref cambia.
         // En otras palabras, cada que un jugador se une o se va, o cada vez que sufre una modificación, este callback se ejecutará.
@@ -198,6 +292,7 @@ function getRandomSafeSpot() {
         })
 
 
+        // MONEDAS JS
         allJSCoinsRef.on("child_added", (snapshot) => {
             const coinJS = snapshot.val();
             const key = getKeyString(coinJS.x, coinJS.y);
@@ -230,8 +325,114 @@ function getRandomSafeSpot() {
             delete coinJSElements[keyToRemove];
         })
 
-        // Colocar la primera moneda JS
+        // MONEDAS JAVA
+        allJavaCoinsRef.on("child_added", (snapshot) => {
+            const coinJava = snapshot.val();
+            const key = getKeyString(coinJava.x, coinJava.y);
+            javaCoins[key] = true;
+
+
+            // Create the DOM Element
+            const coinJavaElement = document.createElement("div");
+            coinJavaElement.classList.add("CoinJava", "grid-cell");
+            coinJavaElement.innerHTML = `
+        <div class="Coin_shadow grid-cell"></div>
+        <div class="CoinJava_sprite grid-cell"></div>
+      `;
+
+            // Position the Element
+            const left = 16 * coinJava.x + "px";
+            const top = 16 * coinJava.y - 4 + "px";
+            coinJavaElement.style.transform = `translate3d(${left}, ${top}, 0)`;
+
+            // Keep a reference for removal later and add to DOM
+            coinJavaElements[key] = coinJavaElement;
+            gameContainer.appendChild(coinJavaElement);
+
+        })
+
+        allJavaCoinsRef.on("child_removed", (snapshot) => {
+            const { x, y } = snapshot.val();
+            const keyToRemove = getKeyString(x, y);
+            gameContainer.removeChild(coinJavaElements[keyToRemove]);
+            delete coinJavaElements[keyToRemove];
+        })
+
+
+
+        // MONEDAS HTML
+        allHtmlCoinsRef.on("child_added", (snapshot) => {
+            const coinHtml = snapshot.val();
+            const key = getKeyString(coinHtml.x, coinHtml.y);
+            HtmlCoins[key] = true;
+
+
+            // Create the DOM Element
+            const coinHtmlElement = document.createElement("div");
+            coinHtmlElement.classList.add("CoinHtml", "grid-cell");
+            coinHtmlElement.innerHTML = `
+                <div class="Coin_shadow grid-cell"></div>
+                <div class="CoinHtml_sprite grid-cell"></div>
+              `;
+
+            // Position the Element
+            const left = 16 * coinHtml.x + "px";
+            const top = 16 * coinHtml.y - 4 + "px";
+            coinHtmlElement.style.transform = `translate3d(${left}, ${top}, 0)`;
+
+            // Keep a reference for removal later and add to DOM
+            coinHtmlElements[key] = coinHtmlElement;
+            gameContainer.appendChild(coinHtmlElement);
+
+        })
+
+        allHtmlCoinsRef.on("child_removed", (snapshot) => {
+            const { x, y } = snapshot.val();
+            const keyToRemove = getKeyString(x, y);
+            gameContainer.removeChild(coinHtmlElements[keyToRemove]);
+            delete coinHtmlElements[keyToRemove];
+        })
+
+
+        // MONEDAS MINA
+        // MONEDAS HTML
+        allMinaCoinsRef.on("child_added", (snapshot) => {
+            const coinMina = snapshot.val();
+            const key = getKeyString(coinMina.x, coinMina.y);
+            MinaCoins[key] = true;
+
+
+            // Create the DOM Element
+            const coinMinaElement = document.createElement("div");
+            coinMinaElement.classList.add("CoinMina", "grid-cell");
+            coinMinaElement.innerMina = `
+                        <div class="Coin_shadow grid-cell"></div>
+                        <div class="CoinMina_sprite grid-cell"></div>
+                      `;
+
+            // Position the Element
+            const left = 16 * coinMina.x + "px";
+            const top = 16 * coinMina.y - 4 + "px";
+            coinMinaElement.style.transform = `translate3d(${left}, ${top}, 0)`;
+
+            // Keep a reference for removal later and add to DOM
+            coinMinaElements[key] = coinMinaElement;
+            gameContainer.appendChild(coinMinaElement);
+
+        })
+
+        allMinaCoinsRef.on("child_removed", (snapshot) => {
+            const { x, y } = snapshot.val();
+            const keyToRemove = getKeyString(x, y);
+            gameContainer.removeChild(coinMinaElements[keyToRemove]);
+            delete coinMinaElements[keyToRemove];
+        })
+
+        // Colocar la primera moneda
         placeJSCoin();
+        placeJavaCoin();
+        placeHtmlCoin();
+        placeMinaCoin();
 
     }
 

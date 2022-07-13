@@ -352,3 +352,42 @@ button:active {
 .Coin_shadow {
     background: url(coin-shadow.png) no-repeat no-repeat;
 }
+
+/* JavaCoins */
+.CoinJava_sprite {
+    background: url(java.png) no-repeat no-repeat;
+    animation: coinFloat 5s linear infinite alternate-reverse; 
+}
+@keyframes coinFloat {
+    from { transform: translateY(0) }
+    to { transform: translateY(5px) }
+}
+.Coin_shadow {
+    background: url(coin-shadow.png) no-repeat no-repeat;
+}
+
+/* HtmlCoins */
+.CoinHtml_sprite {
+    background: url(html.png) no-repeat no-repeat;
+    animation: coinFloat 5s linear infinite alternate-reverse; 
+}
+@keyframes coinFloat {
+    from { transform: translateY(0) }
+    to { transform: translateY(5px) }
+}
+.Coin_shadow {
+    background: url(coin-shadow.png) no-repeat no-repeat;
+}
+
+/* MinaCoins */
+.CoinMina_sprite {
+    background: url(mina.png) no-repeat no-repeat;
+    animation: coinFloat 5s linear infinite alternate-reverse; 
+}
+@keyframes coinFloat {
+    from { transform: translateY(0) }
+    to { transform: translateY(5px) }
+}
+.Coin_shadow {
+    background: url(coin-shadow.png) no-repeat no-repeat;
+}
