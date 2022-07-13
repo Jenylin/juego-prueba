@@ -64,7 +64,7 @@ function getRandomSafeSpotDos() {
         { x: 8, y: 10 },
         { x: 9, y: 2 },
         { x: 9, y: 8 },
-        { x: 10, y: 13 },
+        { x: 10, y: 3 },
         { x: 10, y: 9 },
         { x: 11, y: 6 },
         { x: 11, y: 9 },
@@ -255,7 +255,7 @@ function getRandomSafeSpotCuatro() {
             // Remove this key from data, then uptick Player's coin count
             firebase.database().ref(`minaCoins/${key}`).remove();
             playerRef.update({
-                coins: players[playerId].coins - 1,
+                coins: players[playerId].coins - 10,
             })
         }
     }
