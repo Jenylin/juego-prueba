@@ -20,6 +20,7 @@ function getKeyString(x, y) {
 
     let playerId;
     let playerRef;
+    let players = {};
     // Necesitamos mantener una referencia a estos elementos para poder actualizarlos después en el callback allPlayersRef.on("value", (snapshot) => {})
     // cuando algo cambie, por ejemplo: cuando un personaje diferente se mueva a través del mapa, necesitaremos actualizar ese div para ese personaje.
     // Así que crearemos el objeto playerElements.
@@ -28,7 +29,27 @@ function getKeyString(x, y) {
     // La siguiente es una referencia a nuestro elemento del DOM:
     const gameContainer = document.querySelector(".contenedor-del-juego");
 
+    function handleArrowPress(xChange = 0, yChange = 0) {
+        const newX = players[playerId].x + xChange;
+        const newY = players[playerId].y + yChange;
+        players[playerId].x = newX;
+        players[playerId].y = newY;
+        if(xChange === 1) {
+            players[playerId].direction = "right";
+        }
+        if(xChange === -1) {
+            players[playerId].direction = "left";
+        }
+        playerRef.set(players[playerId]);
+    }
+
     function initGame() {
+
+        new KeyPressListener("ArrowUp", () => handleArrowPress(0, -1))
+        new KeyPressListener("ArrowDown", () => handleArrowPress(0, 1))
+        new KeyPressListener("ArrowLeft", () => handleArrowPress(-1, 0))
+        new KeyPressListener("ArrowRight", () => handleArrowPress(1, 0))
+
         // La siguiente es una referencia a todos los jugadores del juego, en oposición a playerRef, ya que esta última es una referencia sólo nuestra
         // a la que tenemos acceso para actualizar y escribir. Esta referencia de aquí abajo nos permite ver a otros jugadores en el juego.
         const allPlayersRef = firebase.database().ref(`players`);
@@ -38,7 +59,20 @@ function getKeyString(x, y) {
         // El método de abajo es un "listener" que establece un callback para ejecutarse cuando el valor de este ref cambia.
         // En otras palabras, cada que un jugador se une o se va, o cada vez que sufre una modificación, este callback se ejecutará.
         // Esta palabra clave "value" viene de firebase.
-        allPlayersRef.on("value", (snapshot) => {})
+        allPlayersRef.on("value", (snapshot) => {
+            players = snapshot.val() || {}; // Sincronizamos el valor de "players" a lo que sea que esté en firebase. 
+            Object.keys(players).forEach((key) => {
+                const characterState = players[key]; // characterState es un objeto que tiene nuestro nombre, dirección, etc.
+                let el = playerElements[key]; // Veremos nuestra referencia al elemento del dom en pantalla.
+                el.querySelector(".Character_name").innerText = addedPlayer.name;
+                el.querySelector(".Character_coins").innerText = addedPlayer.coins;
+                el.setAttribute("data-color", addedPlayer.color);
+                el.setAttribute("data-direction", addedPlayer.direction);
+                const left = 16 * characterState.x + "px";
+                const top = 16 * characterState.y - 4 + "px";
+                el.style.transform = `translate3d(${left}, ${top}, 0)`
+            })
+        })
 
         // Se ejecuta cuando un nuevo nodo se agrega al árbol, es decir, cuando un nuevo jugador (nuevo para mí) se une.
         allPlayersRef.on("child_added", (snapshot) => {
