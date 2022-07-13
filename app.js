@@ -1,6 +1,6 @@
 const playerColors = [
-    "CUCHO", "PANZA","DON-GATO", "DEMOSTENES","ESPANTO","BENITO","GARFIELD", "SILVESTRE", "TOM","HOBBES","MICIFUZ", "HELLO-KITTY",
-     "MARIE","TOULOUSE","BERLIOZ", "O-MALLEY","DUCHESS","LUCIFER","FELIX"
+    "CUCHO", "PANZA", "DON-GATO", "DEMOSTENES", "ESPANTO", "BENITO", "GARFIELD", "SILVESTRE", "TOM", "HOBBES", "MICIFUZ", "HELLO-KITTY",
+    "MARIE", "TOULOUSE", "BERLIOZ", "O-MALLEY", "DUCHESS", "LUCIFER", "FELIX"
 ];
 
 //Misc Helpers
@@ -18,31 +18,44 @@ function getKeyString(x, y) {
 
 function getRandomSafeSpot() {
     return randomFromArray([
-        {x: 1, y: 4 },
-        {x: 2, y: 4 },
-        {x: 1, y: 5 },
-        {x: 2, y: 6 },
-        {x: 2, y: 8 },
-        {x: 2, y: 9 },
-        {x: 4, y: 8 },
-        {x: 5, y: 5 },
-        {x: 5, y: 8 },
-        {x: 5, y: 10 },
-        {x: 5, y: 11 },
-        {x: 11, y: 7 },
-        {x: 12, y: 7 },
-        {x: 13, y: 7 },
-        {x: 13, y: 6 },
-        {x: 13, y: 8 },
-        {x: 7, y: 6 },
-        {x: 7, y: 7 },
-        {x: 7, y: 8 },
-        {x: 8, y: 8 },
-        {x: 10, y: 8 },
-        {x: 11, y: 4 },
-    ] );
+        { x: 1, y: 4 },
+        { x: 2, y: 4 },
+        { x: 1, y: 5 },
+        { x: 2, y: 6 },
+        { x: 2, y: 8 },
+        { x: 2, y: 9 },
+        { x: 4, y: 8 },
+        { x: 5, y: 5 },
+        { x: 5, y: 8 },
+        { x: 5, y: 10 },
+        { x: 5, y: 11 },
+        { x: 11, y: 7 },
+        { x: 12, y: 7 },
+        { x: 13, y: 7 },
+        { x: 13, y: 6 },
+        { x: 13, y: 8 },
+        { x: 7, y: 6 },
+        { x: 7, y: 7 },
+        { x: 7, y: 8 },
+        { x: 8, y: 8 },
+        { x: 10, y: 8 },
+        { x: 11, y: 4 },
+    ]);
 }
 
+function placeJSCoin() {
+    const { x, y } = getRandomSafeSpot();
+    const coinJSRef = firebase.database().ref(`jsCoins/${getKeyString(x, y)}`);
+    coinJSRef.set({
+        x,
+        y,
+    })
+
+    const coinJSTimeouts = [2000, 3000, 4000, 5000];
+    setTimeout(() => {
+        placeJSCoin();
+    }, randomFromArray(coinJSTimeouts))
+}
 
 (function () {
 
@@ -54,6 +67,13 @@ function getRandomSafeSpot() {
     // Así que crearemos el objeto playerElements.
     let playerElements = {};
 
+    let jsCoins = {};
+    let coinJSElements = {};
+    let javaCoins = {};
+    let coinJavaElements = {};
+    let htmlCoins = {};
+    let coinHtmlElements = {};
+
     // La siguiente es una referencia a nuestro elemento del DOM:
     const gameContainer = document.querySelector(".contenedor-del-juego");
 
@@ -62,10 +82,10 @@ function getRandomSafeSpot() {
         const newY = players[playerId].y + yChange;
         players[playerId].x = newX;
         players[playerId].y = newY;
-        if(xChange === 1) {
+        if (xChange === 1) {
             players[playerId].direction = "right";
         }
-        if(xChange === -1) {
+        if (xChange === -1) {
             players[playerId].direction = "left";
         }
         playerRef.set(players[playerId]);
@@ -111,12 +131,12 @@ function getRandomSafeSpot() {
             const characterElement = document.createElement("div");
             // En la siguiente línea añadimos algunas clases al div.
             characterElement.classList.add("Character", "grid-cell");
-            if (addedPlayer.id === playerId){
+            if (addedPlayer.id === playerId) {
                 // La siguiente línea permite que tu capa esté sobre las de todos los demás y muestra también una pequeña flecha verde
                 // que indica quién eres en la pantalla.
                 characterElement.classList.add("you");
             }
-            
+
             // El innerHTML de nuestro div tendŕa una sombra
             // también tendrá el sprite de nuesro personaje
             // El Character_name_container muestra el texto sobre las cabezas de nuestros personajes. Dentro de este habrá un
@@ -153,7 +173,7 @@ function getRandomSafeSpot() {
         })
 
         allPlayersRef.on("child_removed", (snapshot) => { // Esto nos servirá para quitar a los personajes del DOM una vez que el usuario
-                                                          // cierre la ventana de su navegador.
+            // cierre la ventana de su navegador.
             const removedKey = snapshot.val().id;
             gameContainer.removeChild(playerElements[removedKey]);
             delete playerElements[removedKey];
@@ -161,6 +181,41 @@ function getRandomSafeSpot() {
 
         })
 
+
+        allJSCoinsRef.on("child_added", (snapshot) => {
+            const coinJS = snapshot.val();
+            const key = getKeyString(coinJS.x, coinJS.y);
+            jsCoins[key] = true;
+
+
+            // Create the DOM Element
+            const coinJSElement = document.createElement("div");
+            coinJSElement.classList.add("CoinJS", "grid-cell");
+            coinJSElement.innerHTML = `
+        <div class="Coin_shadow grid-cell"></div>
+        <div class="CoinJS_sprite grid-cell"></div>
+      `;
+
+            // Position the Element
+            const left = 16 * coinJS.x + "px";
+            const top = 16 * coinJS.y - 4 + "px";
+            coinJSElement.style.transform = `translate3d(${left}, ${top}, 0)`;
+
+            // Keep a reference for removal later and add to DOM
+            coinJSElements[key] = coinJSElement;
+            gameContainer.appendChild(coinJSElement);
+
+        })
+
+        allJSCoinsRef.on("child_removed", (snapshot) => {
+            const {x,y} = snapshot.val();
+            const keyToRemove = getKeyString(x,y);
+            gameContainer.removeChild( coinJSElements[keyToRemove] );
+            delete coinJSElements[keyToRemove];
+          })
+
+        // Colocar la primera moneda JS
+        placeJSCoin();
 
     }
 
@@ -179,8 +234,8 @@ function getRandomSafeSpot() {
             // Todo esto sucede al interactuar con un "ref"
             // Esta línea crea el padre de los jugadores por nosotros y luego creará un nodo para nuestro player id.
             playerRef = firebase.database().ref(`players/${playerId}`);
-            
-            
+
+
 
             // La siguiente función permite asignar un nombre aleatorio a cada usuario que se conecta.
             function createName() {
@@ -209,8 +264,8 @@ function getRandomSafeSpot() {
             }
 
             const name = createName();
-            const {x, y} = getRandomSafeSpot();
-            
+            const { x, y } = getRandomSafeSpot();
+
             // Dentro del siguiente método se puede pasar un objeto o un valor, o un string.
             // En este caso, creamos un objeto
             playerRef.set({
@@ -222,7 +277,7 @@ function getRandomSafeSpot() {
                 y,
                 coins: 0,
             })
-            
+
             // La siguiente línea es para remover al usuario de Firebase cuando abandona la página
             playerRef.onDisconnect().remove();
 

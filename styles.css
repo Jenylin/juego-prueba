@@ -339,3 +339,16 @@ button:active {
     margin-left: 1px;
     color: gold;
 }
+
+/* JSCoins */
+.CoinJS_sprite {
+    background: url(js.png) no-repeat no-repeat;
+    animation: coinFloat 0.8s linear infinite alternate-reverse;
+}
+@keyframes coinFloat {
+    from { transform: translateY(0) }
+    to { transform: translateY(5px) }
+}
+.Coin_shadow {
+    background: url(coin-shadow.png) no-repeat no-repeat;
+}
