@@ -19,8 +19,8 @@ function getKeyString(x, y) {
 function getRandomSafeSpot() {
     return randomFromArray([
         { x: 1, y: 4 },
-        { x: 2, y: 4 },
         { x: 1, y: 5 },
+        { x: 2, y: 4 },
         { x: 2, y: 6 },
         { x: 2, y: 8 },
         { x: 2, y: 9 },
@@ -29,17 +29,99 @@ function getRandomSafeSpot() {
         { x: 5, y: 8 },
         { x: 5, y: 10 },
         { x: 5, y: 11 },
-        { x: 11, y: 7 },
-        { x: 12, y: 7 },
-        { x: 13, y: 7 },
-        { x: 13, y: 6 },
-        { x: 13, y: 8 },
         { x: 7, y: 6 },
         { x: 7, y: 7 },
         { x: 7, y: 8 },
         { x: 8, y: 8 },
         { x: 10, y: 8 },
         { x: 11, y: 4 },
+        { x: 11, y: 7 },
+        { x: 12, y: 7 },
+        { x: 13, y: 7 },
+        { x: 13, y: 6 },
+        { x: 13, y: 8 }
+    ]);
+}
+
+
+function getRandomSafeSpotDos() {
+    return randomFromArray([
+        { x: 1, y: 11 },
+        { x: 1, y: 7 },
+        { x: 2, y: 1 },
+        { x: 2, y: 10 },
+        { x: 3, y: 2 },
+        { x: 3, y: 4 },
+        { x: 4, y: 9 },
+        { x: 4, y: 3 },
+        { x: 5, y: 3 },
+        { x: 5, y: 9 },
+        { x: 6, y: 1 },
+        { x: 6, y: 9 },
+        { x: 7, y: 2 },
+        { x: 7, y: 5 },
+        { x: 8, y: 3 },
+        { x: 8, y: 10 },
+        { x: 9, y: 2 },
+        { x: 9, y: 8 },
+        { x: 10, y: 13 },
+        { x: 10, y: 9 },
+        { x: 11, y: 6 },
+        { x: 11, y: 9 },
+    ]);
+}
+
+function getRandomSafeSpotTres() {
+    return randomFromArray([
+        { x: 1, y: 2 },
+        { x: 1, y: 6 },
+        { x: 2, y: 3 },
+        { x: 2, y: 11 },
+        { x: 3, y: 1 },
+        { x: 3, y: 6 },
+        { x: 4, y: 7 },
+        { x: 4, y: 6 },
+        { x: 5, y: 2 },
+        { x: 5, y: 6 },
+        { x: 6, y: 3 },
+        { x: 6, y: 7 },
+        { x: 7, y: 3 },
+        { x: 7, y: 9 },
+        { x: 8, y: 6 },
+        { x: 8, y: 7 },
+        { x: 9, y: 1 },
+        { x: 9, y: 7 },
+        { x: 10, y: 7 },
+        { x: 10, y: 4 },
+        { x: 11, y: 5 },
+        { x: 11, y: 10 },
+    ]);
+}
+
+function getRandomSafeSpotCuatro() {
+    return randomFromArray([
+        { x: 1, y: 3 },
+        { x: 1, y: 9 },
+        { x: 2, y: 2 },
+        { x: 2, y: 5 },
+        { x: 3, y: 8 },
+        { x: 3, y: 10 },
+        { x: 4, y: 5 },
+        { x: 4, y: 10 },
+        { x: 5, y: 1 },
+        { x: 5, y: 4 },
+        { x: 6, y: 5 },
+        { x: 6, y: 11 },
+        { x: 7, y: 4 },
+        { x: 7, y: 11 },
+        { x: 8, y: 9 },
+        { x: 8, y: 5 },
+        { x: 9, y: 3 },
+        { x: 9, y: 9 },
+        { x: 10, y: 5 },
+        { x: 10, y: 1 },
+        { x: 11, y: 2 },
+        { x: 11, y: 8 },
     ]);
 }
 
@@ -96,7 +178,7 @@ function getRandomSafeSpot() {
 
     // Monedas Java
     function placeJavaCoin() {
-        const { x, y } = getRandomSafeSpot();
+        const { x, y } = getRandomSafeSpotDos();
         const coinJavaRef = firebase.database().ref(`javaCoins/${getKeyString(x, y)}`);
         coinJavaRef.set({
             x,
@@ -124,7 +206,7 @@ function getRandomSafeSpot() {
 
     // Monedas HTML
     function placeHtmlCoin() {
-        const { x, y } = getRandomSafeSpot();
+        const { x, y } = getRandomSafeSpotTres();
         const coinHtmlRef = firebase.database().ref(`htmlCoins/${getKeyString(x, y)}`);
         coinHtmlRef.set({
             x,
@@ -153,7 +235,7 @@ function getRandomSafeSpot() {
 
     // Monedas mina
     function placeMinaCoin() {
-        const { x, y } = getRandomSafeSpot();
+        const { x, y } = getRandomSafeSpotCuatro();
         const coinMinaRef = firebase.database().ref(`minaCoins/${getKeyString(x, y)}`);
         coinMinaRef.set({
             x,
