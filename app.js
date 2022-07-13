@@ -404,7 +404,7 @@ function getRandomSafeSpot() {
             // Create the DOM Element
             const coinMinaElement = document.createElement("div");
             coinMinaElement.classList.add("CoinMina", "grid-cell");
-            coinMinaElement.innerMina = `
+            coinMinaElement.innerHTML = `
                         <div class="Coin_shadow grid-cell"></div>
                         <div class="CoinMina_sprite grid-cell"></div>
                       `;
