@@ -123,6 +123,17 @@ function getKeyString(x, y) {
 
 
         })
+
+        allPlayersRef.on("child_removed", (snapshot) => { // Esto nos servirá para quitar a los personajes del DOM una vez que el usuario
+                                                          // cierre la ventana de su navegador.
+            const removedKey = snapshot.val().id;
+            gameContainer.removeChild(playerElements[removedKey]);
+            delete playerElements[removedKey];
+
+
+        })
+
+
     }
 
     // Cuando la app arranque, vamos a escuchar los cambios de auth y vamos a disparar/generar un 
