@@ -16,6 +16,34 @@ function getKeyString(x, y) {
     return `${x}x${y}`;
 }
 
+function getRandomSafeSpot() {
+    return randomFromArray([
+        {x: 1, y: 4 },
+        {x: 2, y: 4 },
+        {x: 1, y: 5 },
+        {x: 2, y: 6 },
+        {x: 2, y: 8 },
+        {x: 2, y: 9 },
+        {x: 4, y: 8 },
+        {x: 5, y: 5 },
+        {x: 5, y: 8 },
+        {x: 5, y: 10 },
+        {x: 5, y: 11 },
+        {x: 11, y: 7 },
+        {x: 12, y: 7 },
+        {x: 13, y: 7 },
+        {x: 13, y: 6 },
+        {x: 13, y: 8 },
+        {x: 7, y: 6 },
+        {x: 7, y: 7 },
+        {x: 7, y: 8 },
+        {x: 8, y: 8 },
+        {x: 10, y: 8 },
+        {x: 11, y: 4 },
+    ] );
+}
+
+
 (function () {
 
     let playerId;
@@ -181,6 +209,7 @@ function getKeyString(x, y) {
             }
 
             const name = createName();
+            const {x, y} = getRandomSafeSpot();
             
             // Dentro del siguiente método se puede pasar un objeto o un valor, o un string.
             // En este caso, creamos un objeto
@@ -189,8 +218,8 @@ function getKeyString(x, y) {
                 name,
                 direction: "right",
                 color: name,
-                x: 3,
-                y: 3,
+                x,
+                y,
                 coins: 0,
             })
             
