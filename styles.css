@@ -343,7 +343,7 @@ button:active {
 /* JSCoins */
 .CoinJS_sprite {
     background: url(js.png) no-repeat no-repeat;
-    animation: coinFloat 5s linear infinite alternate-reverse;
+   /* animation: coinFloat 5s linear infinite alternate-reverse; */
 }
 @keyframes coinFloat {
     from { transform: translateY(0) }
