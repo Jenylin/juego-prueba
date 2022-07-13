@@ -118,7 +118,7 @@ function getRandomSafeSpot() {
         // a la que tenemos acceso para actualizar y escribir. Esta referencia de aquí abajo nos permite ver a otros jugadores en el juego.
         const allPlayersRef = firebase.database().ref(`players`);
         // La referencia de abajo nos permite leer todas las monedas que están en el mundo del juego.
-        const allCoins = firebase.database().ref(`coins`);
+        const allJSCoinsRef = firebase.database().ref(`jsCoins`);
 
         // El método de abajo es un "listener" que establece un callback para ejecutarse cuando el valor de este ref cambia.
         // En otras palabras, cada que un jugador se une o se va, o cada vez que sufre una modificación, este callback se ejecutará.
